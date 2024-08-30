@@ -17,8 +17,10 @@ const Home = () =>{
                   seasons new and exciting fashion in your own</p>
                 <button className='shopnow-button'>Shop Now</button>
             </div>
-            <img className='img-home'  alt='shopnow'
-            src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png"/>
+            <div className='home-img-container'>
+                <img className='img-home'  alt='shopnow'
+                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png"/>
+            </div>
         </div>
         </>
         
