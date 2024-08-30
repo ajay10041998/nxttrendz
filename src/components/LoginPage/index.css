@@ -1,29 +1,123 @@
 *{
     margin:0px;
     box-sizing: border-box;
+   
 }
 .login-bg-container{
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    margin:0px 10px 0px 10px;
+    
+  
 
 }
+.login-img-container{
+    height:40%;
+    width:33%;
+}
 .login-img{
-    height:40vh;
+    height:90%;
+    align-self: center;
+}
+.form-section-container{
+    height:70%;
+    width:30%;
 }
 .form-section{
-    height:50vh;
-    width:23vw;
+    height:80%;
+    width:80%;
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-direction: column;
     padding:20px;
     border-radius: 8px;
     box-shadow: 0px 2px 5px 0px grey;
+    align-self: center;
 }
+
+@media screen and (max-width:576px){
+    .login-bg-container{
+        height:100vh;
+        width:100vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin:10px 0px 10px 0px;
+        
+    }
+    .login-img-container{
+        height:35%;
+        width:35%;
+        align-self: center;
+    }
+    .form-section-container{
+        height:50%;
+        width:35%;
+        align-self: center;
+        
+        
+    }
+    .form-section{
+        height:100%;
+        width:100%;
+    }
+    .login-img{
+        height:90%;
+        width:100%;
+        align-self: center;
+    }
+   
+    
+}
+
+
+@media screen and (min-width:576px) and (max-width:768px){
+    .login-bg-container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height:100%;
+        width:100%;
+        margin:10px;
+    }
+    .login-img-container{
+        height:35%;
+        width:35%;
+    }
+    .form-section-container{
+        height:35%;
+        width:35%;
+    }
+    .login-img{
+        height:100%;
+        width:100%;
+    }
+    .form-section{
+        height:100%;
+        width:100%;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 .login-logo-img-section{
     width:45%;
     align-self: center;
@@ -64,4 +158,9 @@
     border-radius: 6px;
     font-size: 12px;
     
+}
+.error-message{
+    color:red;
+    font-size: 12px;
+    margin-top:6px;
 }
