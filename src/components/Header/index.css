@@ -65,6 +65,11 @@
 }
 .hamburg-button{
     margin-right:10px;
+    background-color: blue;
+    border:0px;
+    border-radius: 3px;
+    color:white;
+    padding:3px 6px 3px 6px;
 }
 .arrow-icon{
     background-color: transparent;
@@ -78,6 +83,14 @@
     .hamburg-secction {
         display: block;
     }
+    .hamburg-ul{
+        position: fixed;
+        top:6%;
+        left:55%;
+        right:28%;
+        bottom:87%;
+
+    }
 }
 
 
@@ -87,6 +100,14 @@
     }
     .hamburg-secction {
         display: block;
+    }
+    .hamburg-ul{
+        position: fixed;
+        top:8%;
+        left:65%;
+        right:25%;
+        bottom:80%;
+
     }
 }
 
