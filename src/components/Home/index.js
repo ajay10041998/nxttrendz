@@ -1,4 +1,5 @@
 
+import {Link} from 'react-router-dom'
 import './index.css'
 import Header from '../Header'
 const Home = () =>{
@@ -15,7 +16,9 @@ const Home = () =>{
                 of the era and we are in a revolution.Your fashion makes
                  you been seen and heard that way you are.So celebrate the
                   seasons new and exciting fashion in your own</p>
-                <button className='shopnow-button'>Shop Now</button>
+                <Link to="/products">
+                    <button className='shopnow-button'>Shop Now</button>
+                </Link>
             </div>
             <div className='home-img-container'>
                 <img className='img-home'  alt='shopnow'

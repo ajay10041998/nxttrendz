@@ -1,5 +1,5 @@
 import { RxHamburgerMenu } from "react-icons/rx";
-import { withRouter } from 'react-router-dom'
+import { withRouter,Link } from 'react-router-dom'
 import Cookies from 'js-cookie'
 import './index.css'
 import { useState } from "react";
@@ -30,18 +30,33 @@ const Header = (props) =>{
                 </div>
                 <div className='list-items-button'> 
                     <ul className='home-about-product-section'>
+                    <Link to='/home'>
                         <li>Home</li>
-                        <li>Products</li>
+                    </Link>
+                    <Link to="/products">
+                        <li>product</li>
+                    </Link>
+                    <Link>
                         <li>Cart</li>
+                    </Link>
                 </ul>
                 <div className="hamburg-secction">
                      <button className="hamburg-button" onClick={onClickHamburg}>
                     <RxHamburgerMenu />
                     </button>
                    {hamburg ? null: (<ul className="hamburg-ul">
+                    <Link to='/home'>
                         <li>Home</li>
+                    </Link>
+                    <Link to='/products'>
                         <li>product</li>
+                    </Link>
+                    <Link>
                         <li>Cart</li>
+                    </Link>
+                        
+                        
+                        
                     
                     </ul>) }
                 

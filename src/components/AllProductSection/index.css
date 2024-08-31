@@ -1,0 +1,16 @@
+.products-list {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-left: 0;
+    
+  }
+  .products-list-heading {
+    color: #475569;
+    font-family: 'Roboto';
+    font-size: 32px;
+    font-weight: 500;
+    margin: 48px;
+  }
