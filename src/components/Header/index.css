@@ -88,9 +88,15 @@
         top:6%;
         left:55%;
         right:28%;
-        bottom:87%;
+        bottom:83%;
 
     }
+}
+
+.list-item{
+    margin-bottom:4px;
+    text-decoration: 0px;
+    color:black;
 }
 
 

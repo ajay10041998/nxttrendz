@@ -14,3 +14,9 @@
     font-weight: 500;
     margin: 48px;
   }
+  .products-loader-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }

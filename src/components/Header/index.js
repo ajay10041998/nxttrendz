@@ -30,13 +30,13 @@ const Header = (props) =>{
                 </div>
                 <div className='list-items-button'> 
                     <ul className='home-about-product-section'>
-                    <Link to='/home'>
+                    <Link to='/home' className="list-item">
                         <li>Home</li>
                     </Link>
-                    <Link to="/products">
+                    <Link to="/products" className="list-item">
                         <li>product</li>
                     </Link>
-                    <Link>
+                    <Link className="list-item">
                         <li>Cart</li>
                     </Link>
                 </ul>
@@ -45,14 +45,14 @@ const Header = (props) =>{
                     <RxHamburgerMenu />
                     </button>
                    {hamburg ? null: (<ul className="hamburg-ul">
-                    <Link to='/home'>
-                        <li>Home</li>
+                    <Link className="list-item" to='/home'>
+                        <li >Home</li>
                     </Link>
-                    <Link to='/products'>
-                        <li>product</li>
+                    <Link className="list-item" to='/products'>
+                        <li >product</li>
                     </Link>
-                    <Link>
-                        <li>Cart</li>
+                    <Link className="list-item">
+                        <li >Cart</li>
                     </Link>
                         
                         
