@@ -16,41 +16,41 @@ const sortByOptions = [
     }
 ];
 
-const AllproductSection = () => {
+const AllProductSection = () => {
     const [productList, setProductList] = useState([]);
     const [loader, setLoader] = useState(false);
     const [sortOptions, setSortOptions] = useState(sortByOptions[0].optionId);
 
-    
-    const getProducts = async () => {
-        setLoader(true);
-        const apiUrl = `https://apis.ccbp.in/products`;
-        const jwtToken = Cookies.get("jwt_token");
-        const options = {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${jwtToken}`
+    useEffect(() => {
+        const getProducts = async () => {  // Moved inside useEffect
+            setLoader(true);
+            const apiUrl = `https://apis.ccbp.in/products?sort_by=${sortOptions}`;
+            const jwtToken = Cookies.get("jwt_token");
+            const options = {
+                method: "GET",
+                headers: {
+                    Authorization: `Bearer ${jwtToken}`
+                }
+            };
+            const response = await fetch(apiUrl, options);
+            if (response.ok) {
+                const data = await response.json();
+                const updatedData = data.products.map(eachProduct => ({
+                    title: eachProduct.title,
+                    id: eachProduct.id,
+                    price: eachProduct.price,
+                    imageUrl: eachProduct.image_url,
+                    rating: eachProduct.rating
+                }));
+                setLoader(false);
+                setProductList(updatedData);
+            } else {
+                setLoader(false);
             }
         };
-        const response = await fetch(apiUrl, options);
-        if (response.ok) {
-            const data = await response.json();
-            const updatedData = data.products.map(eachProduct => ({
-                title: eachProduct.title,
-                id: eachProduct.id,
-                price: eachProduct.price,
-                imageUrl: eachProduct.image_url,
-                rating: eachProduct.rating
-            }));
-            setLoader(false);
-            setProductList(updatedData);
-        }
-    };
 
-    useEffect(() => {
         getProducts();
-    }, [sortOptions]);
-
+    }, [sortOptions]);  // sortOptions is the only dependency
 
     const renderLoader = () => {
         return (
@@ -60,8 +60,8 @@ const AllproductSection = () => {
         );
     };
 
-    const updateActiveOptionId = sortOptions => {
-        setSortOptions(sortOptions);
+    const updateActiveOptionId = optionId => {
+        setSortOptions(optionId);
     };
 
     const renderProductsList = () => {
@@ -88,4 +88,4 @@ const AllproductSection = () => {
     );
 }
 
-export default AllproductSection;
+export default AllProductSection;
