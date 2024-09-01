@@ -1,5 +1,6 @@
-import AllProductSection from "../AllproductSection"
+
 import PrimeDealsSection from '../PrimeDealsSection'
+import NonPrimeProducts from '../NonPrimeProducts'
 
 import Header from "../Header"
 const Products = () =>{
@@ -8,7 +9,7 @@ const Products = () =>{
             <Header/>
             <div>
                 <PrimeDealsSection/>
-                <AllProductSection/>
+                <NonPrimeProducts/>
             </div>
         </div>
     )

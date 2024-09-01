@@ -16,7 +16,7 @@ const sortByOptions = [
     }
 ];
 
-const AllProductSection = () => {
+const NonPrimeProducts = () => {
     const [productList, setProductList] = useState([]);
     const [loader, setLoader] = useState(false);
     const [sortOptions, setSortOptions] = useState(sortByOptions[0].optionId);
@@ -88,4 +88,4 @@ const AllProductSection = () => {
     );
 }
 
-export default AllProductSection;
+export default NonPrimeProducts;
