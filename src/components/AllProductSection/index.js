@@ -21,34 +21,36 @@ const AllproductSection = () => {
     const [loader, setLoader] = useState(false);
     const [sortOptions, setSortOptions] = useState(sortByOptions[0].optionId);
 
-    useEffect(() => {
-        const getProducts = async () => {
-            setLoader(true);
-            const apiUrl = `https://apis.ccbp.in/products`;
-            const jwtToken = Cookies.get("jwt_token");
-            const options = {
-                method: "GET",
-                headers: {
-                    Authorization: `Bearer ${jwtToken}`
-                }
-            };
-            const response = await fetch(apiUrl, options);
-            if (response.ok) {
-                const data = await response.json();
-                const updatedData = data.products.map(eachProduct => ({
-                    title: eachProduct.title,
-                    id: eachProduct.id,
-                    price: eachProduct.price,
-                    imageUrl: eachProduct.image_url,
-                    rating: eachProduct.rating
-                }));
-                setLoader(false);
-                setProductList(updatedData);
+    
+    const getProducts = async () => {
+        setLoader(true);
+        const apiUrl = `https://apis.ccbp.in/products`;
+        const jwtToken = Cookies.get("jwt_token");
+        const options = {
+            method: "GET",
+            headers: {
+                Authorization: `Bearer ${jwtToken}`
             }
         };
+        const response = await fetch(apiUrl, options);
+        if (response.ok) {
+            const data = await response.json();
+            const updatedData = data.products.map(eachProduct => ({
+                title: eachProduct.title,
+                id: eachProduct.id,
+                price: eachProduct.price,
+                imageUrl: eachProduct.image_url,
+                rating: eachProduct.rating
+            }));
+            setLoader(false);
+            setProductList(updatedData);
+        }
+    };
 
+    useEffect(() => {
         getProducts();
-    }, []);
+    }, [sortOptions]);
+
 
     const renderLoader = () => {
         return (
