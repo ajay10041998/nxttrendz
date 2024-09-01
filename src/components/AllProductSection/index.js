@@ -24,7 +24,7 @@ const AllproductSection = () => {
     useEffect(() => {
         const getProducts = async () => {
             setLoader(true);
-            const apiUrl = `https://apis.ccbp.in/products?sort_by=${sortOptions}`;
+            const apiUrl = `https://apis.ccbp.in/products`;
             const jwtToken = Cookies.get("jwt_token");
             const options = {
                 method: "GET",
@@ -48,7 +48,7 @@ const AllproductSection = () => {
         };
 
         getProducts();
-    }, [sortOptions]);
+    }, []);
 
     const renderLoader = () => {
         return (
