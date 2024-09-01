@@ -4,6 +4,32 @@ import ProductsCard from '../ProductsCard';
 import { ThreeDots } from 'react-loader-spinner';
 import './index.css';
 import SortingProductsHeader from "../SortingProductsHeader";
+import FiltersGroup from "../FiltersGroup";
+
+
+const categoryOptions = [
+    {
+      name: 'Clothing',
+      categoryId: '1',
+    },
+    {
+      name: 'Electronics',
+      categoryId: '2',
+    },
+    {
+      name: 'Appliances',
+      categoryId: '3',
+    },
+    {
+      name: 'Grocery',
+      categoryId: '4',
+    },
+    {
+      name: 'Toys',
+      categoryId: '5',
+    },
+  ]
+  
 
 const sortByOptions = [
     {
@@ -20,11 +46,13 @@ const NonPrimeProducts = () => {
     const [productList, setProductList] = useState([]);
     const [loader, setLoader] = useState(false);
     const [sortOptions, setSortOptions] = useState(sortByOptions[0].optionId);
+    const [activeCategoryId,setactiveCategoryId] = useState('')
+    const [searchInput,setsearchInput] = useState('')
 
     useEffect(() => {
         const getProducts = async () => {  // Moved inside useEffect
             setLoader(true);
-            const apiUrl = `https://apis.ccbp.in/products?sort_by=${sortOptions}`;
+            const apiUrl = `https://apis.ccbp.in/products?sort_by=${sortOptions}&category=${activeCategoryId}&title_search=${searchInput}`;
             const jwtToken = Cookies.get("jwt_token");
             const options = {
                 method: "GET",
@@ -50,7 +78,7 @@ const NonPrimeProducts = () => {
         };
 
         getProducts();
-    }, [sortOptions]);  // sortOptions is the only dependency
+    }, [sortOptions,activeCategoryId,searchInput]);  // sortOptions is the only dependency
 
     const renderLoader = () => {
         return (
@@ -64,9 +92,22 @@ const NonPrimeProducts = () => {
         setSortOptions(optionId);
     };
 
+    const changeCategory = activeCategoryId =>{
+        setactiveCategoryId(activeCategoryId)
+    }
+
+    const clearFilters = () =>{
+        setactiveCategoryId('')
+    }
+    const changeSearchInput = searchInput =>{
+        setsearchInput(searchInput)
+    }
+
+    
     const renderProductsList = () => {
-        return (
-            <div>
+        const shouldShowProductsList = productList.length > 0
+        return shouldShowProductsList ? 
+            (  <div className="all-products-container">
                 <SortingProductsHeader
                     sortOptions={sortOptions}
                     sortByOptions={sortByOptions}
@@ -78,12 +119,37 @@ const NonPrimeProducts = () => {
                     ))}
                 </ul>
             </div>
-        );
+        ): (
+            <div className="no-products-view">
+              <img
+                src="https://assets.ccbp.in/frontend/react-js/nxt-trendz/nxt-trendz-no-products-view.png"
+                className="no-products-img"
+                alt="no products"
+              />
+              <h1 className="no-products-heading">No Products Found</h1>
+              <p className="no-products-description">
+                We could not find any products. Try other filters.
+              </p>
+            </div>
+          )
     };
 
     return (
-        <div>
-            {loader ? renderLoader() : renderProductsList()}
+        <div className="filtergroup-allproducts">  
+            <div className="filterComponent">
+                <FiltersGroup 
+                categoryOptions={categoryOptions}
+                activeCategoryId={activeCategoryId}
+                changeCategory={changeCategory}
+                clearFilters={clearFilters}
+                searchInput={searchInput}
+                
+                changeSearchInput={changeSearchInput}/>
+            </div>
+            <div className="allproductsComponent">
+                {loader ? renderLoader() : renderProductsList()}
+            </div>
+            
         </div>
     );
 }
