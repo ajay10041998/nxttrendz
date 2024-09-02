@@ -1,10 +1,34 @@
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
-import ProductsCard from '../ProductsCard';
+import ProductsCard from '../NonPrimeProductsCard';
+
 import { ThreeDots } from 'react-loader-spinner';
 import './index.css';
 import SortingProductsHeader from "../SortingProductsHeader";
 import FiltersGroup from "../FiltersGroup";
+
+const ratingsList = [
+    {
+      ratingId: '4',
+      imageUrl:
+        'https://assets.ccbp.in/frontend/react-js/rating-four-stars-img.png',
+    },
+    {
+      ratingId: '3',
+      imageUrl:
+        'https://assets.ccbp.in/frontend/react-js/rating-three-stars-img.png',
+    },
+    {
+      ratingId: '2',
+      imageUrl:
+        'https://assets.ccbp.in/frontend/react-js/rating-two-stars-img.png',
+    },
+    {
+      ratingId: '1',
+      imageUrl:
+        'https://assets.ccbp.in/frontend/react-js/rating-one-star-img.png',
+    },
+  ]
 
 
 const categoryOptions = [
@@ -48,11 +72,12 @@ const NonPrimeProducts = () => {
     const [sortOptions, setSortOptions] = useState(sortByOptions[0].optionId);
     const [activeCategoryId,setactiveCategoryId] = useState('')
     const [searchInput,setsearchInput] = useState('')
+    const [activeRatingId,setactiveRatingId] = useState('')
 
     useEffect(() => {
         const getProducts = async () => {  // Moved inside useEffect
             setLoader(true);
-            const apiUrl = `https://apis.ccbp.in/products?sort_by=${sortOptions}&category=${activeCategoryId}&title_search=${searchInput}`;
+            const apiUrl = `https://apis.ccbp.in/products?sort_by=${sortOptions}&category=${activeCategoryId}&title_search=${searchInput}&rating=${activeRatingId}`;
             const jwtToken = Cookies.get("jwt_token");
             const options = {
                 method: "GET",
@@ -78,7 +103,7 @@ const NonPrimeProducts = () => {
         };
 
         getProducts();
-    }, [sortOptions,activeCategoryId,searchInput]);  // sortOptions is the only dependency
+    }, [sortOptions,activeCategoryId,searchInput,activeRatingId]);  // sortOptions is the only dependency
 
     const renderLoader = () => {
         return (
@@ -98,9 +123,15 @@ const NonPrimeProducts = () => {
 
     const clearFilters = () =>{
         setactiveCategoryId('')
+        setactiveRatingId('')
+        setsearchInput('')
     }
     const changeSearchInput = searchInput =>{
         setsearchInput(searchInput)
+    }
+
+    const changeRating =  activeRatingId =>{
+        setactiveRatingId(activeRatingId)
     }
 
     
@@ -143,7 +174,9 @@ const NonPrimeProducts = () => {
                 changeCategory={changeCategory}
                 clearFilters={clearFilters}
                 searchInput={searchInput}
-                
+                activeRatingId={activeRatingId}
+                changeRating={changeRating}
+                ratingsList={ratingsList}
                 changeSearchInput={changeSearchInput}/>
             </div>
             <div className="allproductsComponent">

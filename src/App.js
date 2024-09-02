@@ -4,6 +4,7 @@ import LoginPage from "./components/LoginPage"
 import ProtectedRoute from './components/ProtectedRoute'
 import PublicRoute from './components/PublicRoute'
 import Products from './components/Products'
+import ProductItemDetails from './components/ProductItemDetails'
 const App = () =>{
   return (
     <BrowserRouter>
@@ -11,6 +12,7 @@ const App = () =>{
           <PublicRoute exact path="/" component={LoginPage}/>
           <ProtectedRoute exact path="/home" component={Home}/>
           <ProtectedRoute exact path='/products' component={Products}/>
+          <ProtectedRoute exact path='/products/:id' component={ProductItemDetails}/>
       </Switch>
       
     </BrowserRouter>

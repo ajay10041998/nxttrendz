@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Cookies from 'js-cookie';
 import { ThreeDots } from 'react-loader-spinner';
-import ProductCard from "../ProductCard";
+import ProductCard from "../PrimeProductCard";
 import './index.css'
 
 const PrimeDealsSection = () => {

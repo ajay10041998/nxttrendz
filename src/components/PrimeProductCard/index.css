@@ -2,16 +2,15 @@
     display: flex;
     flex-direction: column;
     margin-bottom: 48px;
-    width: 270px;
+    width: 350px;
     flex-grow: 0;
     flex-shrink: 1;
     margin-right: 20px;
-   
   }
   
   @media screen and (min-width: 768px) and (max-width: 991px) {
     .product-item {
-      width: 200px;
+      width: 300px;
     }
   }
   
@@ -24,7 +23,7 @@
   .title {
     color: #171f46;
     font-family: 'Roboto';
-    font-size: 24px;
+    font-size: 16px;
     font-weight: 500;
     margin-top: 20px;
     margin-bottom: 8px;
@@ -74,5 +73,18 @@
     height: 20px;
     width: 20px;
     margin-bottom: 3px;
+  }
+  .product-link {
+    text-decoration: none; /* Remove the default underline from links */
+    color: inherit; /* Inherit the text color from the parent, ensuring consistent styling */
+    display: block; /* Make the link take up the full space of its container */
+    border-radius: 8px; /* Optional: Add rounded corners to the card */
+    overflow: hidden; /* Ensure that any overflow is clipped to the card's border radius */
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out; /* Smooth transition for hover effects */
+  }
+  
+  .product-link:hover {
+    transform: translateY(-5px); /* Slightly lift the card on hover */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Add a subtle shadow effect on hover */
   }
   
