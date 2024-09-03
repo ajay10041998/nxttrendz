@@ -6,6 +6,8 @@ import { ThreeDots } from 'react-loader-spinner';
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
 import {Link} from 'react-router-dom'
 import SimilarProductItem from '../SimilarProductItem'
+import CartContext from "../../context/CartContext";
+
 
 const ProductItemDetails = (props) =>{
     const [apiStatus,setapiStatus] = useState("initial")
@@ -85,18 +87,34 @@ const ProductItemDetails = (props) =>{
     const onIncrementQuantity = ( )=>{
         setQuantity(prevState=>prevState+1)
     }
+    
 
-    const productItemSuccessView = () =>{
-        const {
+    
+
+    const productItemSuccessView = () =>(
+      <CartContext.Consumer>
+         {value=>{
+           const {
             availability,
             brand,
             description,
             imageUrl,
             price,
             rating,
+           
             title,
+            id,
             totalReviews,
           } = productData
+
+          const {addCartItem} = value
+        
+          const addToCart = () =>{
+              addCartItem({...productData,quantity})
+          }
+
+
+
         return (
             <div className="product-details-success-view">
             <div className="product-details-container">
@@ -144,7 +162,7 @@ const ProductItemDetails = (props) =>{
                     <BsPlusSquare className="quantity-controller-icon" />
                   </button>
                 </div>
-                <button type="button" className="button add-to-cart-btn">
+                <button type="button" className="button add-to-cart-btn" onClick={addToCart}>
                   ADD TO CART
                 </button>
               </div>
@@ -160,7 +178,10 @@ const ProductItemDetails = (props) =>{
         </ul>
           </div>
         )
-    }
+      }}
+      </CartContext.Consumer>
+       
+      )
 
     const productItemFailureView = () =>{
         return (
@@ -177,6 +198,7 @@ const ProductItemDetails = (props) =>{
         </button>
       </Link>
     </div>
+
         )
     }
 
